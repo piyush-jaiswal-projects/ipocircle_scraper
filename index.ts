@@ -9,7 +9,7 @@ dotenv.config();
 
 // setInterval(scrapeIpoDetails,  5000); // 5 hrs -> 18000000)
 
-async function scrapeIpoDetails() {
+export default async function scrapeIpoDetails() {
 
     const currLength = await getCurrentIpoCount();
     if(currLength === -1) throw Error()
@@ -38,5 +38,3 @@ async function scrapeIpoDetails() {
       return;
     }
 }
-
-scrapeIpoDetails();
