@@ -1,10 +1,10 @@
 
-// import deleteCacheDirContents from "./deleteCacheContents";
+import deleteCacheDirContents from "./deleteCacheContents";
 import { get } from "./scraper";
 import * as cheerio from "cheerio";
 
 export default async function getUpdatedIpoCount(from: number, to: number) {
-  // await deleteCacheDirContents()
+  await deleteCacheDirContents()
   
   const url = (year: any) =>
     `https://www.chittorgarh.com/report/ipo-in-india-list-main-board-sme/82/?year=${year}`;

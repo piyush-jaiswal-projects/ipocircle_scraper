@@ -13,7 +13,7 @@ export default async function scrapeIpoDetails() {
 
     const currLength = await getCurrentIpoCount();
     if(currLength === -1) throw Error()
-    const updatedLength: number = await getUpdatedIpoCount(2020, 2024);
+    const updatedLength: number = await getUpdatedIpoCount(2023, 2024);
     console.log(`Curr length: ${currLength} | Updatedlength: ${updatedLength}`);
     
 

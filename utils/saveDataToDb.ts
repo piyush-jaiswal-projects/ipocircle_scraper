@@ -5,7 +5,6 @@ dotenv.config();
 
 const saveDataToDb = async (formattedData: any[]) => {
   console.log('Storing data in DB...');
-  return
   
   formattedData.forEach(async (ipo) => {
     try {

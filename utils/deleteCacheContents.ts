@@ -2,11 +2,13 @@ import fs from "fs";
 
 const deleteCacheDirContents = async () => {
   try {
-    fs.rmSync("cache", {
-      recursive: true,
-      force: true
-    });
-    fs.mkdirSync("cache");
+    if (await fs.existsSync("cache")) {
+      await fs.rmSync("cache", {
+        recursive: true,
+        force: true
+      });
+    }
+    await fs.mkdirSync("cache");
     console.log("Recreated cache directory");
     
   } catch (error) {
