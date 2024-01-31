@@ -41,9 +41,12 @@ app.get("/scrapeData", async (req: Request, res: Response) => {
       success: true,
       message: "Scraped successfully!",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(`Error running scrapper: \n ${error}`);
-    res.status(500).json();
+    res.status(500).send({
+      success: false,
+      message: "Some error occurred!",
+    });
   }
 });
 

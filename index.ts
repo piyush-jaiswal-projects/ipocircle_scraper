@@ -13,7 +13,7 @@ export default async function scrapeIpoDetails() {
 
     const currLength = await getCurrentIpoCount();
     if(currLength === -1) throw Error()
-    const updatedLength: number = await getUpdatedIpoCount(2022, 2024);
+    const updatedLength: number = await getUpdatedIpoCount(2020, 2024);
     console.log(`Curr length: ${currLength} | Updatedlength: ${updatedLength}`);
     
 
@@ -35,6 +35,7 @@ export default async function scrapeIpoDetails() {
 
     if (currLength > updatedLength) {
       console.log("Data Mismatch detected!");
+      throw Error("Curr IPO list length is greater than the list fetched from Source")
       return;
     }
 }
