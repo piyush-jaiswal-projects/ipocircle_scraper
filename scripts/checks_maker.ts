@@ -1,4 +1,4 @@
-import { aggresiveCache, get, concat } from './utils.js'
+import { aggresiveCache, get, concat } from '../utils/scraper'
 import { CardRegex, TableRegex } from './regexes.js'
 import * as cheerio from 'cheerio'
 
@@ -22,9 +22,10 @@ const TableChecks = {
   subscription: false,
 }
 
-export const maxInfoDetails = async (ipos) => {
+export const maxInfoDetails = async (ipos: any[]) => {
   const table_checks_map = structuredClone(TableChecks);
   for (const [key, _] of Object.entries(table_checks_map)) {
+    // @ts-ignore
     table_checks_map[key] = {}
   }
   await aggresiveCache(20, ipos.map(ipo => ipo.url))
@@ -55,14 +56,14 @@ export const maxInfoDetails = async (ipos) => {
         process.exit()
       }
     })
-    return concat([{ name: ipo.name, url: ipo.url }, card_checks, table_checks]);
+    return concat([{ name: ipo.name, url: ipo.url }, CardChecks, table_checks]);
   }))
 
 }
 
-export const makeChecks = async (ipos) => {
-  await aggresiveCache(20, ipos.map(ipo => ipo.url))
-  return await Promise.all(ipos.map(async ipo => {
+export const makeChecks = async (ipos: any) => {
+  await aggresiveCache(20, ipos.map((ipo: any) => ipo.url))
+  return await Promise.all(ipos.map(async (ipo: any) => {
     const content = await get(ipo.url)
     console.log(ipo.name)
     if (!content) {
@@ -79,6 +80,7 @@ export const makeChecks = async (ipos) => {
         if ($(card).find('h2').length == 0) return;
         for (const [key, value] of Object.entries(CardRegex))
           if (value.test($(card).find('h2').text().trim().toLowerCase())) {
+            // @ts-ignore
             card_checks[key] = true;
           }
       } catch (err) {
@@ -92,6 +94,7 @@ export const makeChecks = async (ipos) => {
         if ($(table).children('h2').length == 0) return;
         for (const [key, value] of Object.entries(TableRegex))
           if (value.test($(table).children('h2').text().trim().toLowerCase())) {
+            // @ts-ignore
             table_checks[key] = true;
           }
       } catch (err) {

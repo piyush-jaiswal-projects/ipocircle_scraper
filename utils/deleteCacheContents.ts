@@ -1,21 +1,22 @@
-import * as path from "path";
-import * as util from 'util'
-// @ts-ignore
-import rimraf from 'rimraf'
+import fs from "fs";
 
-// @ts-ignore
-const promisifiedRimraf = util.promisify(rimraf);
-// @ts-ignore
 const deleteCacheDirContents = async () => {
-  const directoryPath = "/cache";
-
-  promisifiedRimraf(path.join(directoryPath, "*"), {}, (error: any) => {
-    if (error) {
-      console.error("Error deleting directory contents:", error);
-    } else {
-      console.log("Directory contents deleted successfully.");
+  try {
+    if (await fs.existsSync("cache")) {
+      await fs.rmSync("cache", {
+        recursive: true,
+        force: true
+      });
     }
-  });
+    await fs.mkdirSync("cache");
+    console.log("Recreated cache directory");
+    
+  } catch (error) {
+    console.log(error);
+    
+    console.log("Error deleting cache directory");
+    throw Error();
+  }
 };
 
 export default deleteCacheDirContents;
