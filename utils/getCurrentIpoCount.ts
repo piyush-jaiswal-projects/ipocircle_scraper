@@ -1,21 +1,27 @@
-import axios from 'axios'
-import dotenv from 'dotenv'
+import axios from "axios";
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 interface ApiResponse {
-    success: boolean,
-    data: number[]
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    count: number;
+  };
 }
 
 // fetch list length from DB
 export default async function getCurrentIpoCount() {
-    const ipos = await axios.get(`${process.env.WEBSERVICE_API_URL}/api/v1/ipo/count`)
-    const res: ApiResponse = ipos.data
-    
-    if (res.success) {
-        return res.data[0]
-    }
+  const ipos = await axios.get(
+    `${process.env.WEBSERVICE_API_URL}/api/v1/ipo/count`
+  );
+  const res: ApiResponse = ipos.data;
 
-    return -1
+  if (res.success) {
+    return res.data.count;
+  }
+
+  return -1;
 }

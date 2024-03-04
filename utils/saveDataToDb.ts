@@ -1,21 +1,24 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const saveDataToDb = async (formattedData: any[]) => {
-  console.log('Storing data in DB...');
-  
-  formattedData.forEach(async (ipo) => {
-    try {
-      await axios.post(
-        `${process.env.WEBSERVICE_API_URL}/api/admin/v1/ipo/create`,
-        ipo,
-      );
-    } catch (error) {
-      console.log(`Error Saving IPO to db \n ${error}`);
-    }
+  console.log("Storing data in DB...");
+  let promises: any[] = [];
+
+  formattedData.forEach(async (data) => {
+    promises.push(
+      axios.post(`${process.env.WEBSERVICE_API_URL}/api/v1/ipo/create`, data)
+    );
   });
+
+  Promise.all(promises)
+    .then(() => {})
+    .catch((err) => {
+      console.log(`Some error occurred \n ${err}`);
+      throw Error();
+    });
 };
 
 export default saveDataToDb;

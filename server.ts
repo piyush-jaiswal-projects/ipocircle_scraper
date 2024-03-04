@@ -3,7 +3,6 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import scrapeIpoDetails from "./index";
-import transferData from "./utils/transferData";
 
 dotenv.config();
 
@@ -51,21 +50,21 @@ app.get("/scrapeData", async (req: Request, res: Response) => {
   }
 });
 
-app.get("/transferData", async (req: Request, res: Response) => {
-  try {
-    await transferData("dev_DB");
-    res.status(200).json({
-      success: true,
-      message: "Data transferred successfully!",
-    });
-  } catch (error: any) {
-    console.log(`Error transfering data: \n ${error}`);
-    res.status(500).send({
-      success: false,
-      message: "Some error occurred!",
-    });
-  }
-});
+// app.get("/transferData", async (req: Request, res: Response) => {
+//   try {
+//     await transferData("dev_DB");
+//     res.status(200).json({
+//       success: true,
+//       message: "Data transferred successfully!",
+//     });
+//   } catch (error: any) {
+//     console.log(`Error transfering data: \n ${error}`);
+//     res.status(500).send({
+//       success: false,
+//       message: "Some error occurred!",
+//     });
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Scraper service started on ${port}`);

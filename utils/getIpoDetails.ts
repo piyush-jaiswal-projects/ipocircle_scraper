@@ -8,7 +8,9 @@ const getIpodetails = async () => {
   await deleteCacheDirContents();
   let ipos = [];
   fs.rmSync("table_data/chittor_basic.json");
-  ipos = await scrapeIPOList(2023, 2024);
+  const currYear: number = new Date().getFullYear();
+  
+  ipos = await scrapeIPOList(2023, currYear);
   fs.writeFileSync("table_data/chittor_basic.json", JSON.stringify(ipos));
   const tables = await scrapeIPODetails(ipos);
 

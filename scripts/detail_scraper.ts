@@ -1,12 +1,12 @@
 import { aggresiveCache, get } from '../utils/scraper'
 import * as cheerio from 'cheerio'
 import _tableDataInJson from './table_matcher'
-import { IpoSchema, IpoLotsSchema, CompanyFinancesSchema } from './schema.js'
+import { IpoSchema, IpoLotsSchema, CompanyFinancesSchema } from './schema'
 
-const scrapeIPODetails = async (ipos: any[]) => {
+const scrapeIPODetails = async (ipos: any) => {
   console.log("Scraping in progress ...");
-  await aggresiveCache(20, ipos.map(ipo => ipo.url))
-  const res = await Promise.all(ipos.map(async(ipo) => {
+  await aggresiveCache(20, ipos.map((ipo: any) => ipo.url))
+  const res = await Promise.all(ipos.map(async(ipo: any) => {
     return await scrapeSingle(ipo);
   }));
   return res;
@@ -20,7 +20,7 @@ const scrapeSingle = async (ipo: any) => {
     const tables = _tableDataInJson($, ipo.name)
     return tables;
   } catch (err) {
-    console.error(err)
+    console.error(`Scraping failed for : ${ipo.url} \n Error: ${err}`)
     process.exit()
   }
 }
