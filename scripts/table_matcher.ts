@@ -55,6 +55,13 @@ const TableRegexExt = {
         return ret.length == 0 ? [null, "error"] : [ret]
       }
     },
+    description: {
+      regex: /about/,
+      matcher: (tomatch: any) => {
+        const res = tomatch.replace(/[^\d.]/g, '')
+        return isNaN(res) ? [res, "error"] : [res]
+      }
+    },
     shares_in_lot: {
       regex: /lot size/,
       matcher: (tomatch: any) => {
