@@ -8,10 +8,9 @@ import { deleteAllRecords } from "./utils/deleteAllRecords";
 
 dotenv.config();
 
-// setInterval(scrapeIpoDetails,  5000); // 5 hrs -> 18000000)
-
 export default async function scrapeIpoDetails() {
   try {
+    console.log(`scraping initiated at ${new Date()}`);
     await deleteAllRecords();
     const ipoData: any[] = await getIpodetails();
     const formattedData = await formatData(ipoData);

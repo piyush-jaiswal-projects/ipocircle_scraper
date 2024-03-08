@@ -291,6 +291,12 @@
 				text-transform: uppercase !important;
 				width: auto !important;
 			}
+			.toast-container {
+				bottom: 0%;
+				left: 0%;
+				z-index: 9999;
+				padding: 10px;
+			}
 
 			@media (max-width: 768px){
 				.welcome-body .welcome-bar .alert{
@@ -319,10 +325,45 @@
 				.welcome-body .welcome-bar .alert-dismissible .btn-close {
 					padding: 1rem!important;
 				} 
+
+				.toast-container {
+					top: 60%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					z-index: 9999;
+				}
+			}
+
+			#flashcard {
+				animation: slideUpAndHold 8s infinite linear; /* Adjust the animation duration to 8s */
+			}
+
+			@keyframes slideUpAndHold {
+				0% {
+					opacity: 0;
+					transform: translateY(100%);
+					background: linear-gradient(45deg, #ffffcc 0%, #e9a17d  100%);
+				}
+				30% {
+					opacity: 1;
+					transform: translateY(0);
+					background: linear-gradient(45deg, #ffffcc 0%, #e9a17d 100%);
+				}
+				95% {
+					opacity: 1;
+					transform: translateY(0);
+					background: linear-gradient(45deg, #ffffcc 0%, #e9a17d 100%);
+				}
+				100% {
+					opacity: 0;
+					transform: translateY(-100%);
+					background: linear-gradient(45deg, #ffffcc 0%, #e9a17d 100%);
+				}
 			}
 
 			#flashcard .flashcard-action {
-				background-color: #fff !important;
+				color: white !important;
+				background-color: #7d1717 !important;
 				border-radius: 3px !important;
 				border: 1px solid !important;
 				box-shadow: inherit !important;
@@ -336,7 +377,9 @@
 				width: 100%;
     			text-align: center;
 			}
-			#flashcard .toast-body{
+			
+			#flashcard .toast-body {
+				color: black !important;
 				display: block;
 				line-height: 1.4;
 				margin-top: 10px;
@@ -345,6 +388,8 @@
 				text-overflow: ellipsis;
 				font-size: 15px;
 			}
+
+
 		</style>
 </head>
 <body class="welcome-body">
@@ -355,19 +400,23 @@
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 </div>
-<div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="flashcard" style="background-color: white;" data-bs-autohide="false">
-<div class="toast-header border-bottom-0">
-<strong class="me-auto h5 mt-2 mb-0" style="color: black;">Zerodha (Stock Broker)</strong>
-<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" style="margin-right: 5px;"></button>
+<div class="position-fixed toast-container" style="z-index: 11">
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="flashcard" data-bs-autohide="false">
+<div class="toast-body d-flex align-items-center justify-content-between">
+<div class="d-flex align-items-center">
+<img src="/images/ipo/zerodha_logo_small.gif" alt="Broker Logo" style="max-width: auto; height: 45px;" id="flashcardLogo">
+<strong class="ms-2 h5 mb-0" style="color: rgb(114, 15, 15);" id="flashcardHeader">Zerodha (Trading & Demat Account)</strong>
 </div>
-<div class="toast-body">
-<p><strong>FREE Equity Delivery and MF</strong><br>
+<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
+<div class="toast-body" id="flashcardContent">
+<p class="mb-0"><strong>FREE Equity Delivery and MF</strong><br>
 Flat ₹20/trade Intra-day/F&amp;O</p>
 <a class="flashcard-action" href="https://tinyurl.com/broker-zerodha-acct-cf-flash" title="Zerodha Open Instant Account" target="_blank" style="color: rgb(0, 115, 206);">Open Instant Account</a>
 </div>
 </div>
 </div>
+
 <div class="thetop-position"></div>
 <div class="scrolltop-btn d-sm-block d-md-none">
 <div class="scroll-inside icon"><i class="fa fa-4x fa-angle-up"></i></div>
@@ -821,10 +870,10 @@ Flat ₹20/trade Intra-day/F&amp;O</p>
 </ul>
 <br>
 <p>Latest IPO Updates: IPO tracker </p>
-<p>The upcoming IPOs in India this week and coming weeks are <a href="https://www.chittorgarh.com/ipo/trust-fintech-ipo/1651/" title="Trust Fintech IPO">Trust Fintech IPO</a>, <a href="https://www.chittorgarh.com/ipo/pune-e-stock-broking-ipo/1662/" title="Pune E-Stock Broking IPO">Pune E-Stock Broking IPO</a>, <a href="https://www.chittorgarh.com/ipo/jg-chemicals-ipo/1663/" title="JG Chemicals IPO">JG Chemicals IPO</a>, <a href="https://www.chittorgarh.com/ipo/sona-machinery-ipo/1664/" title="Sona Machinery IPO">Sona Machinery IPO</a>, <a href="https://www.chittorgarh.com/ipo/krystal-integrated-services-ipo/1665/" title="Krystal Integrated Services IPO">Krystal Integrated Services IPO</a>, <a href="https://www.chittorgarh.com/ipo/gopal-namkeen-ipo/1667/" title="Gopal Namkeen IPO">Gopal Namkeen IPO</a>, <a href="https://www.chittorgarh.com/ipo/shree-karni-fabcom-ipo/1668/" title="Shree Karni Fabcom IPO">Shree Karni Fabcom IPO</a>, <a href="https://www.chittorgarh.com/ipo/koura-fine-diamond-jewelry-ipo/1669/" title="Koura Fine Diamond Jewelry IPO">Koura Fine Diamond Jewelry IPO</a>, <a href="https://www.chittorgarh.com/ipo/pratham-epc-projects-ipo/1670/" title="Pratham EPC Projects IPO">Pratham EPC Projects IPO</a>.</p>
-<p>The current active IPOs are <a href="https://www.chittorgarh.com/ipo/mukka-proteins-ipo/1586/" title="Mukka Proteins IPO">Mukka Proteins IPO</a>, <a href="https://www.chittorgarh.com/ipo/r-k-swamy-ipo/1620/" title="R K SWAMY IPO">R K SWAMY IPO</a>, <a href="https://www.chittorgarh.com/ipo/m-v-k-agro-food-ipo/1661/" title="M.V.K. Agro Food IPO">M.V.K. Agro Food IPO</a>, <a href="https://www.chittorgarh.com/ipo/v-r-infraspace-ipo/1666/" title="V R Infraspace IPO">V R Infraspace IPO</a>.</p>
-<p>IPOs closing today are <a href="https://www.chittorgarh.com/ipo/mukka-proteins-ipo/1586/" title="Mukka Proteins IPO">Mukka Proteins IPO</a>, <a href="https://www.chittorgarh.com/ipo/m-v-k-agro-food-ipo/1661/" title="M.V.K. Agro Food IPO">M.V.K. Agro Food IPO</a>.</p>
-<p>IPO listing today is <a href="https://www.chittorgarh.com/ipo/owais-metal-and-mineral-processing-ipo/1659/" title="Owais Metal and Mineral Processing IPO">Owais Metal and Mineral Processing IPO</a>.</p>
+<p>The upcoming IPOs in India this week and coming weeks are <a href="https://www.chittorgarh.com/ipo/trust-fintech-ipo/1651/" title="Trust Fintech IPO">Trust Fintech IPO</a>, <a href="https://www.chittorgarh.com/ipo/krystal-integrated-services-ipo/1665/" title="Krystal Integrated Services IPO">Krystal Integrated Services IPO</a>, <a href="https://www.chittorgarh.com/ipo/pratham-epc-projects-ipo/1670/" title="Pratham EPC Projects IPO">Pratham EPC Projects IPO</a>, <a href="https://www.chittorgarh.com/ipo/signoria-creation-ipo/1671/" title="Signoria Creation IPO">Signoria Creation IPO</a>, <a href="https://www.chittorgarh.com/ipo/popular-vehicles-services-ipo/1672/" title="Popular Vehicles & Services IPO">Popular Vehicles & Services IPO</a>, <a href="https://www.chittorgarh.com/ipo/avp-infracon-ipo/1673/" title="AVP Infracon IPO">AVP Infracon IPO</a>, <a href="https://www.chittorgarh.com/ipo/royal-sense-ipo/1674/" title="Royal Sense IPO">Royal Sense IPO</a>.</p>
+<p>The current active IPOs are <a href="https://www.chittorgarh.com/ipo/pune-e-stock-broking-ipo/1662/" title="Pune E-Stock Broking IPO">Pune E-Stock Broking IPO</a>, <a href="https://www.chittorgarh.com/ipo/jg-chemicals-ipo/1663/" title="JG Chemicals IPO">JG Chemicals IPO</a>, <a href="https://www.chittorgarh.com/ipo/sona-machinery-ipo/1664/" title="Sona Machinery IPO">Sona Machinery IPO</a>, <a href="https://www.chittorgarh.com/ipo/gopal-namkeen-ipo/1667/" title="Gopal Namkeen IPO">Gopal Namkeen IPO</a>, <a href="https://www.chittorgarh.com/ipo/shree-karni-fabcom-ipo/1668/" title="Shree Karni Fabcom IPO">Shree Karni Fabcom IPO</a>, <a href="https://www.chittorgarh.com/ipo/koura-fine-diamond-jewelry-ipo/1669/" title="Koura Fine Diamond Jewelry IPO">Koura Fine Diamond Jewelry IPO</a>.</p>
+<p>IPOs closing today are <a href="https://www.chittorgarh.com/ipo/jg-chemicals-ipo/1663/" title="JG Chemicals IPO">JG Chemicals IPO</a>, <a href="https://www.chittorgarh.com/ipo/sona-machinery-ipo/1664/" title="Sona Machinery IPO">Sona Machinery IPO</a>.</p>
+<p>IPOs listing today are <a href="https://www.chittorgarh.com/ipo/mukka-proteins-ipo/1586/" title="Mukka Proteins IPO">Mukka Proteins IPO</a>, <a href="https://www.chittorgarh.com/ipo/m-v-k-agro-food-ipo/1661/" title="M.V.K. Agro Food IPO">M.V.K. Agro Food IPO</a>.</p>
 <form class="form-inline" method="GET" action="/ipo/ipo_detail.asp" name="frmSearch" autocomplete="off">
 <div class="row">
 <div class="col-3 col-md-2 text-end mt-2">
@@ -2049,7 +2098,7 @@ Flat &#8377;20 Per Trade
 </div>
 </div>
 
-<script src="/asset/js/common.js?v=14" defer></script>
+<script src="/asset/js/common.js?v=15" defer></script>
 
 
 <script>
@@ -2231,6 +2280,6 @@ Flat &#8377;20 Per Trade
 			download_csv(csv.join("\n"), filename);
 		}
 	</script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"85f4383c9dc19632","b":1,"version":"2024.2.4","token":"8d4061b05f4b4776849e94df693928a6"}' crossorigin="anonymous"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"861236d61fab3b9d","b":1,"version":"2024.2.4","token":"8d4061b05f4b4776849e94df693928a6"}' crossorigin="anonymous"></script>
 </body>
 </html>

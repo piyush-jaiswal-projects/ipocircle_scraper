@@ -50,6 +50,8 @@ app.get("/scrapeData", async (req: Request, res: Response) => {
   }
 });
 
+setInterval(scrapeIpoDetails,  18000000); // 5 hrs -> 18000000)
+
 // app.get("/transferData", async (req: Request, res: Response) => {
 //   try {
 //     await transferData("dev_DB");
