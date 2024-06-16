@@ -24,7 +24,7 @@ export const deleteAllRecords = async () => {
     console.log("All records deleted successfully.");
     } catch (error) {
         console.log(`Error deleting records \n ${error}`);
-        
+        // process.exit(1)
     }
     finally {
         return
